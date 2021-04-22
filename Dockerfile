@@ -38,12 +38,8 @@ RUN gem install bundler:2.2.11
 
 # Install Node and Yarn
 WORKDIR /usr/tmp/node
-RUN wget --quiet https://nodejs.org/dist/v14.16.0/node-v14.16.0.tar.gz -O node.tar.gz \
-  && tar --strip-components=1 -xzf node.tar.gz \
-  && ./configure \
-  && make -j4 \
-  && make install \
-  && rm -rf ./*
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - \
+  && apt-get install -y nodejs
 RUN npm install -g yarn
 
 WORKDIR /
